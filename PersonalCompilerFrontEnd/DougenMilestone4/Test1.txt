@@ -1,0 +1,15 @@
+{
+int x;
+int y;
+
+if x == y(
+ y = x + 4;
+ )
+}
+
+Output:
+_t0 = x1 == y1
+ifFalse _t0 goto L0
+_t2 = x1 + 4
+y1 = _t2
+L0

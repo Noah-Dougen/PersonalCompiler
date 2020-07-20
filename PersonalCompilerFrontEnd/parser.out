@@ -1,0 +1,2272 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NEWLINE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> block
+Rule 2     block -> LBRACE action_new_scope stmt_list RBRACE
+Rule 3     action_new_scope -> <empty>
+Rule 4     stmt_list -> stmt_list stmt
+Rule 5     stmt_list -> <empty>
+Rule 6     stmt -> type ID SEMICOLON
+Rule 7     stmt -> ID ASSIGN lowop SEMICOLON
+Rule 8     stmt -> block
+Rule 9     stmt -> READ ID SEMICOLON
+Rule 10    stmt -> WRITE lowop SEMICOLON
+Rule 11    stmt -> IF lowop LPAREN stmt optelse RPAREN
+Rule 12    stmt -> WHILE lowop LPAREN stmt RPAREN
+Rule 13    stmt -> lowop
+Rule 14    stmt -> comment
+Rule 15    optelse -> ELSE LPAREN stmt RPAREN
+Rule 16    optelse -> <empty>
+Rule 17    type -> INT
+Rule 18    lowop -> lowop AND equal
+Rule 19    lowop -> lowop OR equal
+Rule 20    lowop -> equal
+Rule 21    lowop -> equal EQUALTO op
+Rule 22    equal -> equal NOTEQUAL op
+Rule 23    equal -> op
+Rule 24    op -> op LESSTHAN expr
+Rule 25    op -> op GREATERTHAN expr
+Rule 26    op -> op LESSEQUAL expr
+Rule 27    op -> op GREATEQUAL expr
+Rule 28    op -> expr
+Rule 29    expr -> expr PLUS term
+Rule 30    expr -> expr MINUS term
+Rule 31    expr -> term
+Rule 32    term -> term TIMES factor
+Rule 33    term -> term DIVIDE factor
+Rule 34    term -> term MODULUS factor
+Rule 35    term -> factor
+Rule 36    factor -> MINUS factor
+Rule 37    factor -> UNARYNOT factor
+Rule 38    factor -> ID
+Rule 39    factor -> NUM
+Rule 40    factor -> LPAREN lowop RPAREN
+Rule 41    comment -> COMMENT
+Rule 42    comment -> MLCOMMENT
+
+Terminals, with rules where they appear
+
+AND                  : 18
+ASSIGN               : 7
+COMMENT              : 41
+DIVIDE               : 33
+ELSE                 : 15
+EQUALTO              : 21
+GREATEQUAL           : 27
+GREATERTHAN          : 25
+ID                   : 6 7 9 38
+IF                   : 11
+INT                  : 17
+LBRACE               : 2
+LESSEQUAL            : 26
+LESSTHAN             : 24
+LPAREN               : 11 12 15 40
+MINUS                : 30 36
+MLCOMMENT            : 42
+MODULUS              : 34
+NEWLINE              : 
+NOTEQUAL             : 22
+NUM                  : 39
+OR                   : 19
+PLUS                 : 29
+RBRACE               : 2
+READ                 : 9
+RPAREN               : 11 12 15 40
+SEMICOLON            : 6 7 9 10
+TIMES                : 32
+UNARYNOT             : 37
+WHILE                : 12
+WRITE                : 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+action_new_scope     : 2
+block                : 1 8
+comment              : 14
+equal                : 18 19 20 21 22
+expr                 : 24 25 26 27 28 29 30
+factor               : 32 33 34 35 36 37
+lowop                : 7 10 11 12 13 18 19 40
+op                   : 21 22 23 24 25 26 27
+optelse              : 11
+program              : 0
+stmt                 : 4 11 12 15
+stmt_list            : 2 4
+term                 : 29 30 31 32 33 34
+type                 : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . block
+    (2) block -> . LBRACE action_new_scope stmt_list RBRACE
+
+    LBRACE          shift and go to state 3
+
+    program                        shift and go to state 1
+    block                          shift and go to state 2
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> block .
+
+    $end            reduce using rule 1 (program -> block .)
+
+
+state 3
+
+    (2) block -> LBRACE . action_new_scope stmt_list RBRACE
+    (3) action_new_scope -> .
+
+    RBRACE          reduce using rule 3 (action_new_scope -> .)
+    ID              reduce using rule 3 (action_new_scope -> .)
+    READ            reduce using rule 3 (action_new_scope -> .)
+    WRITE           reduce using rule 3 (action_new_scope -> .)
+    IF              reduce using rule 3 (action_new_scope -> .)
+    WHILE           reduce using rule 3 (action_new_scope -> .)
+    INT             reduce using rule 3 (action_new_scope -> .)
+    LBRACE          reduce using rule 3 (action_new_scope -> .)
+    COMMENT         reduce using rule 3 (action_new_scope -> .)
+    MLCOMMENT       reduce using rule 3 (action_new_scope -> .)
+    MINUS           reduce using rule 3 (action_new_scope -> .)
+    UNARYNOT        reduce using rule 3 (action_new_scope -> .)
+    NUM             reduce using rule 3 (action_new_scope -> .)
+    LPAREN          reduce using rule 3 (action_new_scope -> .)
+
+    action_new_scope               shift and go to state 4
+
+state 4
+
+    (2) block -> LBRACE action_new_scope . stmt_list RBRACE
+    (4) stmt_list -> . stmt_list stmt
+    (5) stmt_list -> .
+
+    RBRACE          reduce using rule 5 (stmt_list -> .)
+    ID              reduce using rule 5 (stmt_list -> .)
+    READ            reduce using rule 5 (stmt_list -> .)
+    WRITE           reduce using rule 5 (stmt_list -> .)
+    IF              reduce using rule 5 (stmt_list -> .)
+    WHILE           reduce using rule 5 (stmt_list -> .)
+    INT             reduce using rule 5 (stmt_list -> .)
+    LBRACE          reduce using rule 5 (stmt_list -> .)
+    COMMENT         reduce using rule 5 (stmt_list -> .)
+    MLCOMMENT       reduce using rule 5 (stmt_list -> .)
+    MINUS           reduce using rule 5 (stmt_list -> .)
+    UNARYNOT        reduce using rule 5 (stmt_list -> .)
+    NUM             reduce using rule 5 (stmt_list -> .)
+    LPAREN          reduce using rule 5 (stmt_list -> .)
+
+    stmt_list                      shift and go to state 5
+
+state 5
+
+    (2) block -> LBRACE action_new_scope stmt_list . RBRACE
+    (4) stmt_list -> stmt_list . stmt
+    (6) stmt -> . type ID SEMICOLON
+    (7) stmt -> . ID ASSIGN lowop SEMICOLON
+    (8) stmt -> . block
+    (9) stmt -> . READ ID SEMICOLON
+    (10) stmt -> . WRITE lowop SEMICOLON
+    (11) stmt -> . IF lowop LPAREN stmt optelse RPAREN
+    (12) stmt -> . WHILE lowop LPAREN stmt RPAREN
+    (13) stmt -> . lowop
+    (14) stmt -> . comment
+    (17) type -> . INT
+    (2) block -> . LBRACE action_new_scope stmt_list RBRACE
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (41) comment -> . COMMENT
+    (42) comment -> . MLCOMMENT
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    RBRACE          shift and go to state 6
+    ID              shift and go to state 9
+    READ            shift and go to state 12
+    WRITE           shift and go to state 13
+    IF              shift and go to state 14
+    WHILE           shift and go to state 16
+    INT             shift and go to state 18
+    LBRACE          shift and go to state 3
+    COMMENT         shift and go to state 21
+    MLCOMMENT       shift and go to state 22
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    stmt                           shift and go to state 7
+    type                           shift and go to state 8
+    lowop                          shift and go to state 10
+    block                          shift and go to state 11
+    comment                        shift and go to state 17
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 6
+
+    (2) block -> LBRACE action_new_scope stmt_list RBRACE .
+
+    $end            reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    RBRACE          reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    ID              reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    READ            reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    WRITE           reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    IF              reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    WHILE           reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    INT             reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    LBRACE          reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    COMMENT         reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    MLCOMMENT       reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    MINUS           reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    UNARYNOT        reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    NUM             reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    LPAREN          reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    ELSE            reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    RPAREN          reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+
+
+state 7
+
+    (4) stmt_list -> stmt_list stmt .
+
+    RBRACE          reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    ID              reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    READ            reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    WRITE           reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    IF              reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    WHILE           reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    INT             reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    LBRACE          reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    COMMENT         reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    MLCOMMENT       reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    MINUS           reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    UNARYNOT        reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    NUM             reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    LPAREN          reduce using rule 4 (stmt_list -> stmt_list stmt .)
+
+
+state 8
+
+    (6) stmt -> type . ID SEMICOLON
+
+    ID              shift and go to state 29
+
+
+state 9
+
+    (7) stmt -> ID . ASSIGN lowop SEMICOLON
+    (38) factor -> ID .
+
+    ASSIGN          shift and go to state 30
+    TIMES           reduce using rule 38 (factor -> ID .)
+    DIVIDE          reduce using rule 38 (factor -> ID .)
+    MODULUS         reduce using rule 38 (factor -> ID .)
+    PLUS            reduce using rule 38 (factor -> ID .)
+    MINUS           reduce using rule 38 (factor -> ID .)
+    LESSTHAN        reduce using rule 38 (factor -> ID .)
+    GREATERTHAN     reduce using rule 38 (factor -> ID .)
+    LESSEQUAL       reduce using rule 38 (factor -> ID .)
+    GREATEQUAL      reduce using rule 38 (factor -> ID .)
+    EQUALTO         reduce using rule 38 (factor -> ID .)
+    NOTEQUAL        reduce using rule 38 (factor -> ID .)
+    AND             reduce using rule 38 (factor -> ID .)
+    OR              reduce using rule 38 (factor -> ID .)
+    RBRACE          reduce using rule 38 (factor -> ID .)
+    ID              reduce using rule 38 (factor -> ID .)
+    READ            reduce using rule 38 (factor -> ID .)
+    WRITE           reduce using rule 38 (factor -> ID .)
+    IF              reduce using rule 38 (factor -> ID .)
+    WHILE           reduce using rule 38 (factor -> ID .)
+    INT             reduce using rule 38 (factor -> ID .)
+    LBRACE          reduce using rule 38 (factor -> ID .)
+    COMMENT         reduce using rule 38 (factor -> ID .)
+    MLCOMMENT       reduce using rule 38 (factor -> ID .)
+    UNARYNOT        reduce using rule 38 (factor -> ID .)
+    NUM             reduce using rule 38 (factor -> ID .)
+    LPAREN          reduce using rule 38 (factor -> ID .)
+    ELSE            reduce using rule 38 (factor -> ID .)
+    RPAREN          reduce using rule 38 (factor -> ID .)
+
+
+state 10
+
+    (13) stmt -> lowop .
+    (18) lowop -> lowop . AND equal
+    (19) lowop -> lowop . OR equal
+
+    RBRACE          reduce using rule 13 (stmt -> lowop .)
+    ID              reduce using rule 13 (stmt -> lowop .)
+    READ            reduce using rule 13 (stmt -> lowop .)
+    WRITE           reduce using rule 13 (stmt -> lowop .)
+    IF              reduce using rule 13 (stmt -> lowop .)
+    WHILE           reduce using rule 13 (stmt -> lowop .)
+    INT             reduce using rule 13 (stmt -> lowop .)
+    LBRACE          reduce using rule 13 (stmt -> lowop .)
+    COMMENT         reduce using rule 13 (stmt -> lowop .)
+    MLCOMMENT       reduce using rule 13 (stmt -> lowop .)
+    MINUS           reduce using rule 13 (stmt -> lowop .)
+    UNARYNOT        reduce using rule 13 (stmt -> lowop .)
+    NUM             reduce using rule 13 (stmt -> lowop .)
+    LPAREN          reduce using rule 13 (stmt -> lowop .)
+    ELSE            reduce using rule 13 (stmt -> lowop .)
+    RPAREN          reduce using rule 13 (stmt -> lowop .)
+    AND             shift and go to state 31
+    OR              shift and go to state 32
+
+
+state 11
+
+    (8) stmt -> block .
+
+    RBRACE          reduce using rule 8 (stmt -> block .)
+    ID              reduce using rule 8 (stmt -> block .)
+    READ            reduce using rule 8 (stmt -> block .)
+    WRITE           reduce using rule 8 (stmt -> block .)
+    IF              reduce using rule 8 (stmt -> block .)
+    WHILE           reduce using rule 8 (stmt -> block .)
+    INT             reduce using rule 8 (stmt -> block .)
+    LBRACE          reduce using rule 8 (stmt -> block .)
+    COMMENT         reduce using rule 8 (stmt -> block .)
+    MLCOMMENT       reduce using rule 8 (stmt -> block .)
+    MINUS           reduce using rule 8 (stmt -> block .)
+    UNARYNOT        reduce using rule 8 (stmt -> block .)
+    NUM             reduce using rule 8 (stmt -> block .)
+    LPAREN          reduce using rule 8 (stmt -> block .)
+    ELSE            reduce using rule 8 (stmt -> block .)
+    RPAREN          reduce using rule 8 (stmt -> block .)
+
+
+state 12
+
+    (9) stmt -> READ . ID SEMICOLON
+
+    ID              shift and go to state 33
+
+
+state 13
+
+    (10) stmt -> WRITE . lowop SEMICOLON
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    lowop                          shift and go to state 34
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 14
+
+    (11) stmt -> IF . lowop LPAREN stmt optelse RPAREN
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    lowop                          shift and go to state 36
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 15
+
+    (40) factor -> LPAREN . lowop RPAREN
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    lowop                          shift and go to state 37
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 16
+
+    (12) stmt -> WHILE . lowop LPAREN stmt RPAREN
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    lowop                          shift and go to state 38
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 17
+
+    (14) stmt -> comment .
+
+    RBRACE          reduce using rule 14 (stmt -> comment .)
+    ID              reduce using rule 14 (stmt -> comment .)
+    READ            reduce using rule 14 (stmt -> comment .)
+    WRITE           reduce using rule 14 (stmt -> comment .)
+    IF              reduce using rule 14 (stmt -> comment .)
+    WHILE           reduce using rule 14 (stmt -> comment .)
+    INT             reduce using rule 14 (stmt -> comment .)
+    LBRACE          reduce using rule 14 (stmt -> comment .)
+    COMMENT         reduce using rule 14 (stmt -> comment .)
+    MLCOMMENT       reduce using rule 14 (stmt -> comment .)
+    MINUS           reduce using rule 14 (stmt -> comment .)
+    UNARYNOT        reduce using rule 14 (stmt -> comment .)
+    NUM             reduce using rule 14 (stmt -> comment .)
+    LPAREN          reduce using rule 14 (stmt -> comment .)
+    ELSE            reduce using rule 14 (stmt -> comment .)
+    RPAREN          reduce using rule 14 (stmt -> comment .)
+
+
+state 18
+
+    (17) type -> INT .
+
+    ID              reduce using rule 17 (type -> INT .)
+
+
+state 19
+
+    (20) lowop -> equal .
+    (21) lowop -> equal . EQUALTO op
+    (22) equal -> equal . NOTEQUAL op
+
+    AND             reduce using rule 20 (lowop -> equal .)
+    OR              reduce using rule 20 (lowop -> equal .)
+    RBRACE          reduce using rule 20 (lowop -> equal .)
+    ID              reduce using rule 20 (lowop -> equal .)
+    READ            reduce using rule 20 (lowop -> equal .)
+    WRITE           reduce using rule 20 (lowop -> equal .)
+    IF              reduce using rule 20 (lowop -> equal .)
+    WHILE           reduce using rule 20 (lowop -> equal .)
+    INT             reduce using rule 20 (lowop -> equal .)
+    LBRACE          reduce using rule 20 (lowop -> equal .)
+    COMMENT         reduce using rule 20 (lowop -> equal .)
+    MLCOMMENT       reduce using rule 20 (lowop -> equal .)
+    MINUS           reduce using rule 20 (lowop -> equal .)
+    UNARYNOT        reduce using rule 20 (lowop -> equal .)
+    NUM             reduce using rule 20 (lowop -> equal .)
+    LPAREN          reduce using rule 20 (lowop -> equal .)
+    SEMICOLON       reduce using rule 20 (lowop -> equal .)
+    RPAREN          reduce using rule 20 (lowop -> equal .)
+    ELSE            reduce using rule 20 (lowop -> equal .)
+    EQUALTO         shift and go to state 39
+    NOTEQUAL        shift and go to state 40
+
+
+state 20
+
+    (23) equal -> op .
+    (24) op -> op . LESSTHAN expr
+    (25) op -> op . GREATERTHAN expr
+    (26) op -> op . LESSEQUAL expr
+    (27) op -> op . GREATEQUAL expr
+
+    EQUALTO         reduce using rule 23 (equal -> op .)
+    NOTEQUAL        reduce using rule 23 (equal -> op .)
+    AND             reduce using rule 23 (equal -> op .)
+    OR              reduce using rule 23 (equal -> op .)
+    RBRACE          reduce using rule 23 (equal -> op .)
+    ID              reduce using rule 23 (equal -> op .)
+    READ            reduce using rule 23 (equal -> op .)
+    WRITE           reduce using rule 23 (equal -> op .)
+    IF              reduce using rule 23 (equal -> op .)
+    WHILE           reduce using rule 23 (equal -> op .)
+    INT             reduce using rule 23 (equal -> op .)
+    LBRACE          reduce using rule 23 (equal -> op .)
+    COMMENT         reduce using rule 23 (equal -> op .)
+    MLCOMMENT       reduce using rule 23 (equal -> op .)
+    MINUS           reduce using rule 23 (equal -> op .)
+    UNARYNOT        reduce using rule 23 (equal -> op .)
+    NUM             reduce using rule 23 (equal -> op .)
+    LPAREN          reduce using rule 23 (equal -> op .)
+    SEMICOLON       reduce using rule 23 (equal -> op .)
+    RPAREN          reduce using rule 23 (equal -> op .)
+    ELSE            reduce using rule 23 (equal -> op .)
+    LESSTHAN        shift and go to state 41
+    GREATERTHAN     shift and go to state 42
+    LESSEQUAL       shift and go to state 43
+    GREATEQUAL      shift and go to state 44
+
+
+state 21
+
+    (41) comment -> COMMENT .
+
+    RBRACE          reduce using rule 41 (comment -> COMMENT .)
+    ID              reduce using rule 41 (comment -> COMMENT .)
+    READ            reduce using rule 41 (comment -> COMMENT .)
+    WRITE           reduce using rule 41 (comment -> COMMENT .)
+    IF              reduce using rule 41 (comment -> COMMENT .)
+    WHILE           reduce using rule 41 (comment -> COMMENT .)
+    INT             reduce using rule 41 (comment -> COMMENT .)
+    LBRACE          reduce using rule 41 (comment -> COMMENT .)
+    COMMENT         reduce using rule 41 (comment -> COMMENT .)
+    MLCOMMENT       reduce using rule 41 (comment -> COMMENT .)
+    MINUS           reduce using rule 41 (comment -> COMMENT .)
+    UNARYNOT        reduce using rule 41 (comment -> COMMENT .)
+    NUM             reduce using rule 41 (comment -> COMMENT .)
+    LPAREN          reduce using rule 41 (comment -> COMMENT .)
+    ELSE            reduce using rule 41 (comment -> COMMENT .)
+    RPAREN          reduce using rule 41 (comment -> COMMENT .)
+
+
+state 22
+
+    (42) comment -> MLCOMMENT .
+
+    RBRACE          reduce using rule 42 (comment -> MLCOMMENT .)
+    ID              reduce using rule 42 (comment -> MLCOMMENT .)
+    READ            reduce using rule 42 (comment -> MLCOMMENT .)
+    WRITE           reduce using rule 42 (comment -> MLCOMMENT .)
+    IF              reduce using rule 42 (comment -> MLCOMMENT .)
+    WHILE           reduce using rule 42 (comment -> MLCOMMENT .)
+    INT             reduce using rule 42 (comment -> MLCOMMENT .)
+    LBRACE          reduce using rule 42 (comment -> MLCOMMENT .)
+    COMMENT         reduce using rule 42 (comment -> MLCOMMENT .)
+    MLCOMMENT       reduce using rule 42 (comment -> MLCOMMENT .)
+    MINUS           reduce using rule 42 (comment -> MLCOMMENT .)
+    UNARYNOT        reduce using rule 42 (comment -> MLCOMMENT .)
+    NUM             reduce using rule 42 (comment -> MLCOMMENT .)
+    LPAREN          reduce using rule 42 (comment -> MLCOMMENT .)
+    ELSE            reduce using rule 42 (comment -> MLCOMMENT .)
+    RPAREN          reduce using rule 42 (comment -> MLCOMMENT .)
+
+
+state 23
+
+    (28) op -> expr .
+    (29) expr -> expr . PLUS term
+    (30) expr -> expr . MINUS term
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    LESSTHAN        reduce using rule 28 (op -> expr .)
+    GREATERTHAN     reduce using rule 28 (op -> expr .)
+    LESSEQUAL       reduce using rule 28 (op -> expr .)
+    GREATEQUAL      reduce using rule 28 (op -> expr .)
+    EQUALTO         reduce using rule 28 (op -> expr .)
+    NOTEQUAL        reduce using rule 28 (op -> expr .)
+    AND             reduce using rule 28 (op -> expr .)
+    OR              reduce using rule 28 (op -> expr .)
+    RBRACE          reduce using rule 28 (op -> expr .)
+    ID              reduce using rule 28 (op -> expr .)
+    READ            reduce using rule 28 (op -> expr .)
+    WRITE           reduce using rule 28 (op -> expr .)
+    IF              reduce using rule 28 (op -> expr .)
+    WHILE           reduce using rule 28 (op -> expr .)
+    INT             reduce using rule 28 (op -> expr .)
+    LBRACE          reduce using rule 28 (op -> expr .)
+    COMMENT         reduce using rule 28 (op -> expr .)
+    MLCOMMENT       reduce using rule 28 (op -> expr .)
+    UNARYNOT        reduce using rule 28 (op -> expr .)
+    NUM             reduce using rule 28 (op -> expr .)
+    LPAREN          reduce using rule 28 (op -> expr .)
+    SEMICOLON       reduce using rule 28 (op -> expr .)
+    RPAREN          reduce using rule 28 (op -> expr .)
+    ELSE            reduce using rule 28 (op -> expr .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+
+  ! MINUS           [ reduce using rule 28 (op -> expr .) ]
+
+
+state 24
+
+    (31) expr -> term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+    (34) term -> term . MODULUS factor
+
+    PLUS            reduce using rule 31 (expr -> term .)
+    MINUS           reduce using rule 31 (expr -> term .)
+    LESSTHAN        reduce using rule 31 (expr -> term .)
+    GREATERTHAN     reduce using rule 31 (expr -> term .)
+    LESSEQUAL       reduce using rule 31 (expr -> term .)
+    GREATEQUAL      reduce using rule 31 (expr -> term .)
+    EQUALTO         reduce using rule 31 (expr -> term .)
+    NOTEQUAL        reduce using rule 31 (expr -> term .)
+    AND             reduce using rule 31 (expr -> term .)
+    OR              reduce using rule 31 (expr -> term .)
+    RBRACE          reduce using rule 31 (expr -> term .)
+    ID              reduce using rule 31 (expr -> term .)
+    READ            reduce using rule 31 (expr -> term .)
+    WRITE           reduce using rule 31 (expr -> term .)
+    IF              reduce using rule 31 (expr -> term .)
+    WHILE           reduce using rule 31 (expr -> term .)
+    INT             reduce using rule 31 (expr -> term .)
+    LBRACE          reduce using rule 31 (expr -> term .)
+    COMMENT         reduce using rule 31 (expr -> term .)
+    MLCOMMENT       reduce using rule 31 (expr -> term .)
+    UNARYNOT        reduce using rule 31 (expr -> term .)
+    NUM             reduce using rule 31 (expr -> term .)
+    LPAREN          reduce using rule 31 (expr -> term .)
+    SEMICOLON       reduce using rule 31 (expr -> term .)
+    RPAREN          reduce using rule 31 (expr -> term .)
+    ELSE            reduce using rule 31 (expr -> term .)
+    TIMES           shift and go to state 47
+    DIVIDE          shift and go to state 48
+    MODULUS         shift and go to state 49
+
+
+state 25
+
+    (36) factor -> MINUS . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    factor                         shift and go to state 50
+
+state 26
+
+    (35) term -> factor .
+
+    TIMES           reduce using rule 35 (term -> factor .)
+    DIVIDE          reduce using rule 35 (term -> factor .)
+    MODULUS         reduce using rule 35 (term -> factor .)
+    PLUS            reduce using rule 35 (term -> factor .)
+    MINUS           reduce using rule 35 (term -> factor .)
+    LESSTHAN        reduce using rule 35 (term -> factor .)
+    GREATERTHAN     reduce using rule 35 (term -> factor .)
+    LESSEQUAL       reduce using rule 35 (term -> factor .)
+    GREATEQUAL      reduce using rule 35 (term -> factor .)
+    EQUALTO         reduce using rule 35 (term -> factor .)
+    NOTEQUAL        reduce using rule 35 (term -> factor .)
+    AND             reduce using rule 35 (term -> factor .)
+    OR              reduce using rule 35 (term -> factor .)
+    RBRACE          reduce using rule 35 (term -> factor .)
+    ID              reduce using rule 35 (term -> factor .)
+    READ            reduce using rule 35 (term -> factor .)
+    WRITE           reduce using rule 35 (term -> factor .)
+    IF              reduce using rule 35 (term -> factor .)
+    WHILE           reduce using rule 35 (term -> factor .)
+    INT             reduce using rule 35 (term -> factor .)
+    LBRACE          reduce using rule 35 (term -> factor .)
+    COMMENT         reduce using rule 35 (term -> factor .)
+    MLCOMMENT       reduce using rule 35 (term -> factor .)
+    UNARYNOT        reduce using rule 35 (term -> factor .)
+    NUM             reduce using rule 35 (term -> factor .)
+    LPAREN          reduce using rule 35 (term -> factor .)
+    SEMICOLON       reduce using rule 35 (term -> factor .)
+    RPAREN          reduce using rule 35 (term -> factor .)
+    ELSE            reduce using rule 35 (term -> factor .)
+
+
+state 27
+
+    (37) factor -> UNARYNOT . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    factor                         shift and go to state 51
+
+state 28
+
+    (39) factor -> NUM .
+
+    TIMES           reduce using rule 39 (factor -> NUM .)
+    DIVIDE          reduce using rule 39 (factor -> NUM .)
+    MODULUS         reduce using rule 39 (factor -> NUM .)
+    PLUS            reduce using rule 39 (factor -> NUM .)
+    MINUS           reduce using rule 39 (factor -> NUM .)
+    LESSTHAN        reduce using rule 39 (factor -> NUM .)
+    GREATERTHAN     reduce using rule 39 (factor -> NUM .)
+    LESSEQUAL       reduce using rule 39 (factor -> NUM .)
+    GREATEQUAL      reduce using rule 39 (factor -> NUM .)
+    EQUALTO         reduce using rule 39 (factor -> NUM .)
+    NOTEQUAL        reduce using rule 39 (factor -> NUM .)
+    AND             reduce using rule 39 (factor -> NUM .)
+    OR              reduce using rule 39 (factor -> NUM .)
+    RBRACE          reduce using rule 39 (factor -> NUM .)
+    ID              reduce using rule 39 (factor -> NUM .)
+    READ            reduce using rule 39 (factor -> NUM .)
+    WRITE           reduce using rule 39 (factor -> NUM .)
+    IF              reduce using rule 39 (factor -> NUM .)
+    WHILE           reduce using rule 39 (factor -> NUM .)
+    INT             reduce using rule 39 (factor -> NUM .)
+    LBRACE          reduce using rule 39 (factor -> NUM .)
+    COMMENT         reduce using rule 39 (factor -> NUM .)
+    MLCOMMENT       reduce using rule 39 (factor -> NUM .)
+    UNARYNOT        reduce using rule 39 (factor -> NUM .)
+    NUM             reduce using rule 39 (factor -> NUM .)
+    LPAREN          reduce using rule 39 (factor -> NUM .)
+    SEMICOLON       reduce using rule 39 (factor -> NUM .)
+    RPAREN          reduce using rule 39 (factor -> NUM .)
+    ELSE            reduce using rule 39 (factor -> NUM .)
+
+
+state 29
+
+    (6) stmt -> type ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 52
+
+
+state 30
+
+    (7) stmt -> ID ASSIGN . lowop SEMICOLON
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    lowop                          shift and go to state 53
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 31
+
+    (18) lowop -> lowop AND . equal
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    equal                          shift and go to state 54
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 32
+
+    (19) lowop -> lowop OR . equal
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    equal                          shift and go to state 55
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 33
+
+    (9) stmt -> READ ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 56
+
+
+state 34
+
+    (10) stmt -> WRITE lowop . SEMICOLON
+    (18) lowop -> lowop . AND equal
+    (19) lowop -> lowop . OR equal
+
+    SEMICOLON       shift and go to state 57
+    AND             shift and go to state 31
+    OR              shift and go to state 32
+
+
+state 35
+
+    (38) factor -> ID .
+
+    TIMES           reduce using rule 38 (factor -> ID .)
+    DIVIDE          reduce using rule 38 (factor -> ID .)
+    MODULUS         reduce using rule 38 (factor -> ID .)
+    PLUS            reduce using rule 38 (factor -> ID .)
+    MINUS           reduce using rule 38 (factor -> ID .)
+    LESSTHAN        reduce using rule 38 (factor -> ID .)
+    GREATERTHAN     reduce using rule 38 (factor -> ID .)
+    LESSEQUAL       reduce using rule 38 (factor -> ID .)
+    GREATEQUAL      reduce using rule 38 (factor -> ID .)
+    EQUALTO         reduce using rule 38 (factor -> ID .)
+    NOTEQUAL        reduce using rule 38 (factor -> ID .)
+    SEMICOLON       reduce using rule 38 (factor -> ID .)
+    AND             reduce using rule 38 (factor -> ID .)
+    OR              reduce using rule 38 (factor -> ID .)
+    LPAREN          reduce using rule 38 (factor -> ID .)
+    RPAREN          reduce using rule 38 (factor -> ID .)
+    RBRACE          reduce using rule 38 (factor -> ID .)
+    ID              reduce using rule 38 (factor -> ID .)
+    READ            reduce using rule 38 (factor -> ID .)
+    WRITE           reduce using rule 38 (factor -> ID .)
+    IF              reduce using rule 38 (factor -> ID .)
+    WHILE           reduce using rule 38 (factor -> ID .)
+    INT             reduce using rule 38 (factor -> ID .)
+    LBRACE          reduce using rule 38 (factor -> ID .)
+    COMMENT         reduce using rule 38 (factor -> ID .)
+    MLCOMMENT       reduce using rule 38 (factor -> ID .)
+    UNARYNOT        reduce using rule 38 (factor -> ID .)
+    NUM             reduce using rule 38 (factor -> ID .)
+    ELSE            reduce using rule 38 (factor -> ID .)
+
+
+state 36
+
+    (11) stmt -> IF lowop . LPAREN stmt optelse RPAREN
+    (18) lowop -> lowop . AND equal
+    (19) lowop -> lowop . OR equal
+
+    LPAREN          shift and go to state 58
+    AND             shift and go to state 31
+    OR              shift and go to state 32
+
+
+state 37
+
+    (40) factor -> LPAREN lowop . RPAREN
+    (18) lowop -> lowop . AND equal
+    (19) lowop -> lowop . OR equal
+
+    RPAREN          shift and go to state 59
+    AND             shift and go to state 31
+    OR              shift and go to state 32
+
+
+state 38
+
+    (12) stmt -> WHILE lowop . LPAREN stmt RPAREN
+    (18) lowop -> lowop . AND equal
+    (19) lowop -> lowop . OR equal
+
+    LPAREN          shift and go to state 60
+    AND             shift and go to state 31
+    OR              shift and go to state 32
+
+
+state 39
+
+    (21) lowop -> equal EQUALTO . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    op                             shift and go to state 61
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 40
+
+    (22) equal -> equal NOTEQUAL . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    op                             shift and go to state 62
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 41
+
+    (24) op -> op LESSTHAN . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    expr                           shift and go to state 63
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 42
+
+    (25) op -> op GREATERTHAN . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    expr                           shift and go to state 64
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 43
+
+    (26) op -> op LESSEQUAL . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    expr                           shift and go to state 65
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 44
+
+    (27) op -> op GREATEQUAL . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    expr                           shift and go to state 66
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 45
+
+    (29) expr -> expr PLUS . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    term                           shift and go to state 67
+    factor                         shift and go to state 26
+
+state 46
+
+    (30) expr -> expr MINUS . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    term                           shift and go to state 68
+    factor                         shift and go to state 26
+
+state 47
+
+    (32) term -> term TIMES . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    factor                         shift and go to state 69
+
+state 48
+
+    (33) term -> term DIVIDE . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    factor                         shift and go to state 70
+
+state 49
+
+    (34) term -> term MODULUS . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    ID              shift and go to state 35
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    factor                         shift and go to state 71
+
+state 50
+
+    (36) factor -> MINUS factor .
+
+    TIMES           reduce using rule 36 (factor -> MINUS factor .)
+    DIVIDE          reduce using rule 36 (factor -> MINUS factor .)
+    MODULUS         reduce using rule 36 (factor -> MINUS factor .)
+    PLUS            reduce using rule 36 (factor -> MINUS factor .)
+    MINUS           reduce using rule 36 (factor -> MINUS factor .)
+    LESSTHAN        reduce using rule 36 (factor -> MINUS factor .)
+    GREATERTHAN     reduce using rule 36 (factor -> MINUS factor .)
+    LESSEQUAL       reduce using rule 36 (factor -> MINUS factor .)
+    GREATEQUAL      reduce using rule 36 (factor -> MINUS factor .)
+    EQUALTO         reduce using rule 36 (factor -> MINUS factor .)
+    NOTEQUAL        reduce using rule 36 (factor -> MINUS factor .)
+    AND             reduce using rule 36 (factor -> MINUS factor .)
+    OR              reduce using rule 36 (factor -> MINUS factor .)
+    RBRACE          reduce using rule 36 (factor -> MINUS factor .)
+    ID              reduce using rule 36 (factor -> MINUS factor .)
+    READ            reduce using rule 36 (factor -> MINUS factor .)
+    WRITE           reduce using rule 36 (factor -> MINUS factor .)
+    IF              reduce using rule 36 (factor -> MINUS factor .)
+    WHILE           reduce using rule 36 (factor -> MINUS factor .)
+    INT             reduce using rule 36 (factor -> MINUS factor .)
+    LBRACE          reduce using rule 36 (factor -> MINUS factor .)
+    COMMENT         reduce using rule 36 (factor -> MINUS factor .)
+    MLCOMMENT       reduce using rule 36 (factor -> MINUS factor .)
+    UNARYNOT        reduce using rule 36 (factor -> MINUS factor .)
+    NUM             reduce using rule 36 (factor -> MINUS factor .)
+    LPAREN          reduce using rule 36 (factor -> MINUS factor .)
+    SEMICOLON       reduce using rule 36 (factor -> MINUS factor .)
+    RPAREN          reduce using rule 36 (factor -> MINUS factor .)
+    ELSE            reduce using rule 36 (factor -> MINUS factor .)
+
+
+state 51
+
+    (37) factor -> UNARYNOT factor .
+
+    TIMES           reduce using rule 37 (factor -> UNARYNOT factor .)
+    DIVIDE          reduce using rule 37 (factor -> UNARYNOT factor .)
+    MODULUS         reduce using rule 37 (factor -> UNARYNOT factor .)
+    PLUS            reduce using rule 37 (factor -> UNARYNOT factor .)
+    MINUS           reduce using rule 37 (factor -> UNARYNOT factor .)
+    LESSTHAN        reduce using rule 37 (factor -> UNARYNOT factor .)
+    GREATERTHAN     reduce using rule 37 (factor -> UNARYNOT factor .)
+    LESSEQUAL       reduce using rule 37 (factor -> UNARYNOT factor .)
+    GREATEQUAL      reduce using rule 37 (factor -> UNARYNOT factor .)
+    EQUALTO         reduce using rule 37 (factor -> UNARYNOT factor .)
+    NOTEQUAL        reduce using rule 37 (factor -> UNARYNOT factor .)
+    AND             reduce using rule 37 (factor -> UNARYNOT factor .)
+    OR              reduce using rule 37 (factor -> UNARYNOT factor .)
+    RBRACE          reduce using rule 37 (factor -> UNARYNOT factor .)
+    ID              reduce using rule 37 (factor -> UNARYNOT factor .)
+    READ            reduce using rule 37 (factor -> UNARYNOT factor .)
+    WRITE           reduce using rule 37 (factor -> UNARYNOT factor .)
+    IF              reduce using rule 37 (factor -> UNARYNOT factor .)
+    WHILE           reduce using rule 37 (factor -> UNARYNOT factor .)
+    INT             reduce using rule 37 (factor -> UNARYNOT factor .)
+    LBRACE          reduce using rule 37 (factor -> UNARYNOT factor .)
+    COMMENT         reduce using rule 37 (factor -> UNARYNOT factor .)
+    MLCOMMENT       reduce using rule 37 (factor -> UNARYNOT factor .)
+    UNARYNOT        reduce using rule 37 (factor -> UNARYNOT factor .)
+    NUM             reduce using rule 37 (factor -> UNARYNOT factor .)
+    LPAREN          reduce using rule 37 (factor -> UNARYNOT factor .)
+    SEMICOLON       reduce using rule 37 (factor -> UNARYNOT factor .)
+    RPAREN          reduce using rule 37 (factor -> UNARYNOT factor .)
+    ELSE            reduce using rule 37 (factor -> UNARYNOT factor .)
+
+
+state 52
+
+    (6) stmt -> type ID SEMICOLON .
+
+    RBRACE          reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    ID              reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    READ            reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    WRITE           reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    IF              reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    WHILE           reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    INT             reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    LBRACE          reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    COMMENT         reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    MLCOMMENT       reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    MINUS           reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    UNARYNOT        reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    NUM             reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    LPAREN          reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    ELSE            reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    RPAREN          reduce using rule 6 (stmt -> type ID SEMICOLON .)
+
+
+state 53
+
+    (7) stmt -> ID ASSIGN lowop . SEMICOLON
+    (18) lowop -> lowop . AND equal
+    (19) lowop -> lowop . OR equal
+
+    SEMICOLON       shift and go to state 72
+    AND             shift and go to state 31
+    OR              shift and go to state 32
+
+
+state 54
+
+    (18) lowop -> lowop AND equal .
+    (22) equal -> equal . NOTEQUAL op
+
+    AND             reduce using rule 18 (lowop -> lowop AND equal .)
+    OR              reduce using rule 18 (lowop -> lowop AND equal .)
+    RBRACE          reduce using rule 18 (lowop -> lowop AND equal .)
+    ID              reduce using rule 18 (lowop -> lowop AND equal .)
+    READ            reduce using rule 18 (lowop -> lowop AND equal .)
+    WRITE           reduce using rule 18 (lowop -> lowop AND equal .)
+    IF              reduce using rule 18 (lowop -> lowop AND equal .)
+    WHILE           reduce using rule 18 (lowop -> lowop AND equal .)
+    INT             reduce using rule 18 (lowop -> lowop AND equal .)
+    LBRACE          reduce using rule 18 (lowop -> lowop AND equal .)
+    COMMENT         reduce using rule 18 (lowop -> lowop AND equal .)
+    MLCOMMENT       reduce using rule 18 (lowop -> lowop AND equal .)
+    MINUS           reduce using rule 18 (lowop -> lowop AND equal .)
+    UNARYNOT        reduce using rule 18 (lowop -> lowop AND equal .)
+    NUM             reduce using rule 18 (lowop -> lowop AND equal .)
+    LPAREN          reduce using rule 18 (lowop -> lowop AND equal .)
+    SEMICOLON       reduce using rule 18 (lowop -> lowop AND equal .)
+    RPAREN          reduce using rule 18 (lowop -> lowop AND equal .)
+    ELSE            reduce using rule 18 (lowop -> lowop AND equal .)
+    NOTEQUAL        shift and go to state 40
+
+
+state 55
+
+    (19) lowop -> lowop OR equal .
+    (22) equal -> equal . NOTEQUAL op
+
+    AND             reduce using rule 19 (lowop -> lowop OR equal .)
+    OR              reduce using rule 19 (lowop -> lowop OR equal .)
+    RBRACE          reduce using rule 19 (lowop -> lowop OR equal .)
+    ID              reduce using rule 19 (lowop -> lowop OR equal .)
+    READ            reduce using rule 19 (lowop -> lowop OR equal .)
+    WRITE           reduce using rule 19 (lowop -> lowop OR equal .)
+    IF              reduce using rule 19 (lowop -> lowop OR equal .)
+    WHILE           reduce using rule 19 (lowop -> lowop OR equal .)
+    INT             reduce using rule 19 (lowop -> lowop OR equal .)
+    LBRACE          reduce using rule 19 (lowop -> lowop OR equal .)
+    COMMENT         reduce using rule 19 (lowop -> lowop OR equal .)
+    MLCOMMENT       reduce using rule 19 (lowop -> lowop OR equal .)
+    MINUS           reduce using rule 19 (lowop -> lowop OR equal .)
+    UNARYNOT        reduce using rule 19 (lowop -> lowop OR equal .)
+    NUM             reduce using rule 19 (lowop -> lowop OR equal .)
+    LPAREN          reduce using rule 19 (lowop -> lowop OR equal .)
+    SEMICOLON       reduce using rule 19 (lowop -> lowop OR equal .)
+    RPAREN          reduce using rule 19 (lowop -> lowop OR equal .)
+    ELSE            reduce using rule 19 (lowop -> lowop OR equal .)
+    NOTEQUAL        shift and go to state 40
+
+
+state 56
+
+    (9) stmt -> READ ID SEMICOLON .
+
+    RBRACE          reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    ID              reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    READ            reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    WRITE           reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    IF              reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    WHILE           reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    INT             reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    LBRACE          reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    COMMENT         reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    MLCOMMENT       reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    MINUS           reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    UNARYNOT        reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    NUM             reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    LPAREN          reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    ELSE            reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    RPAREN          reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+
+
+state 57
+
+    (10) stmt -> WRITE lowop SEMICOLON .
+
+    RBRACE          reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    ID              reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    READ            reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    WRITE           reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    IF              reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    WHILE           reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    INT             reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    LBRACE          reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    COMMENT         reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    MLCOMMENT       reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    MINUS           reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    UNARYNOT        reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    NUM             reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    LPAREN          reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    ELSE            reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+    RPAREN          reduce using rule 10 (stmt -> WRITE lowop SEMICOLON .)
+
+
+state 58
+
+    (11) stmt -> IF lowop LPAREN . stmt optelse RPAREN
+    (6) stmt -> . type ID SEMICOLON
+    (7) stmt -> . ID ASSIGN lowop SEMICOLON
+    (8) stmt -> . block
+    (9) stmt -> . READ ID SEMICOLON
+    (10) stmt -> . WRITE lowop SEMICOLON
+    (11) stmt -> . IF lowop LPAREN stmt optelse RPAREN
+    (12) stmt -> . WHILE lowop LPAREN stmt RPAREN
+    (13) stmt -> . lowop
+    (14) stmt -> . comment
+    (17) type -> . INT
+    (2) block -> . LBRACE action_new_scope stmt_list RBRACE
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (41) comment -> . COMMENT
+    (42) comment -> . MLCOMMENT
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    ID              shift and go to state 9
+    READ            shift and go to state 12
+    WRITE           shift and go to state 13
+    IF              shift and go to state 14
+    WHILE           shift and go to state 16
+    INT             shift and go to state 18
+    LBRACE          shift and go to state 3
+    COMMENT         shift and go to state 21
+    MLCOMMENT       shift and go to state 22
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    lowop                          shift and go to state 10
+    stmt                           shift and go to state 73
+    type                           shift and go to state 8
+    block                          shift and go to state 11
+    comment                        shift and go to state 17
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 59
+
+    (40) factor -> LPAREN lowop RPAREN .
+
+    TIMES           reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    DIVIDE          reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    MODULUS         reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    PLUS            reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    MINUS           reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    LESSTHAN        reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    GREATERTHAN     reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    LESSEQUAL       reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    GREATEQUAL      reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    EQUALTO         reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    NOTEQUAL        reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    AND             reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    OR              reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    RBRACE          reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    ID              reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    READ            reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    WRITE           reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    IF              reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    WHILE           reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    INT             reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    LBRACE          reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    COMMENT         reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    MLCOMMENT       reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    UNARYNOT        reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    NUM             reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    LPAREN          reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    SEMICOLON       reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    RPAREN          reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+    ELSE            reduce using rule 40 (factor -> LPAREN lowop RPAREN .)
+
+
+state 60
+
+    (12) stmt -> WHILE lowop LPAREN . stmt RPAREN
+    (6) stmt -> . type ID SEMICOLON
+    (7) stmt -> . ID ASSIGN lowop SEMICOLON
+    (8) stmt -> . block
+    (9) stmt -> . READ ID SEMICOLON
+    (10) stmt -> . WRITE lowop SEMICOLON
+    (11) stmt -> . IF lowop LPAREN stmt optelse RPAREN
+    (12) stmt -> . WHILE lowop LPAREN stmt RPAREN
+    (13) stmt -> . lowop
+    (14) stmt -> . comment
+    (17) type -> . INT
+    (2) block -> . LBRACE action_new_scope stmt_list RBRACE
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (41) comment -> . COMMENT
+    (42) comment -> . MLCOMMENT
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    ID              shift and go to state 9
+    READ            shift and go to state 12
+    WRITE           shift and go to state 13
+    IF              shift and go to state 14
+    WHILE           shift and go to state 16
+    INT             shift and go to state 18
+    LBRACE          shift and go to state 3
+    COMMENT         shift and go to state 21
+    MLCOMMENT       shift and go to state 22
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    lowop                          shift and go to state 10
+    stmt                           shift and go to state 74
+    type                           shift and go to state 8
+    block                          shift and go to state 11
+    comment                        shift and go to state 17
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 61
+
+    (21) lowop -> equal EQUALTO op .
+    (24) op -> op . LESSTHAN expr
+    (25) op -> op . GREATERTHAN expr
+    (26) op -> op . LESSEQUAL expr
+    (27) op -> op . GREATEQUAL expr
+
+    AND             reduce using rule 21 (lowop -> equal EQUALTO op .)
+    OR              reduce using rule 21 (lowop -> equal EQUALTO op .)
+    RBRACE          reduce using rule 21 (lowop -> equal EQUALTO op .)
+    ID              reduce using rule 21 (lowop -> equal EQUALTO op .)
+    READ            reduce using rule 21 (lowop -> equal EQUALTO op .)
+    WRITE           reduce using rule 21 (lowop -> equal EQUALTO op .)
+    IF              reduce using rule 21 (lowop -> equal EQUALTO op .)
+    WHILE           reduce using rule 21 (lowop -> equal EQUALTO op .)
+    INT             reduce using rule 21 (lowop -> equal EQUALTO op .)
+    LBRACE          reduce using rule 21 (lowop -> equal EQUALTO op .)
+    COMMENT         reduce using rule 21 (lowop -> equal EQUALTO op .)
+    MLCOMMENT       reduce using rule 21 (lowop -> equal EQUALTO op .)
+    MINUS           reduce using rule 21 (lowop -> equal EQUALTO op .)
+    UNARYNOT        reduce using rule 21 (lowop -> equal EQUALTO op .)
+    NUM             reduce using rule 21 (lowop -> equal EQUALTO op .)
+    LPAREN          reduce using rule 21 (lowop -> equal EQUALTO op .)
+    SEMICOLON       reduce using rule 21 (lowop -> equal EQUALTO op .)
+    RPAREN          reduce using rule 21 (lowop -> equal EQUALTO op .)
+    ELSE            reduce using rule 21 (lowop -> equal EQUALTO op .)
+    LESSTHAN        shift and go to state 41
+    GREATERTHAN     shift and go to state 42
+    LESSEQUAL       shift and go to state 43
+    GREATEQUAL      shift and go to state 44
+
+
+state 62
+
+    (22) equal -> equal NOTEQUAL op .
+    (24) op -> op . LESSTHAN expr
+    (25) op -> op . GREATERTHAN expr
+    (26) op -> op . LESSEQUAL expr
+    (27) op -> op . GREATEQUAL expr
+
+    EQUALTO         reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    NOTEQUAL        reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    AND             reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    OR              reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    RBRACE          reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    ID              reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    READ            reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    WRITE           reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    IF              reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    WHILE           reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    INT             reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    LBRACE          reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    COMMENT         reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    MLCOMMENT       reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    MINUS           reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    UNARYNOT        reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    NUM             reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    LPAREN          reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    SEMICOLON       reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    RPAREN          reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    ELSE            reduce using rule 22 (equal -> equal NOTEQUAL op .)
+    LESSTHAN        shift and go to state 41
+    GREATERTHAN     shift and go to state 42
+    LESSEQUAL       shift and go to state 43
+    GREATEQUAL      shift and go to state 44
+
+
+state 63
+
+    (24) op -> op LESSTHAN expr .
+    (29) expr -> expr . PLUS term
+    (30) expr -> expr . MINUS term
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    LESSTHAN        reduce using rule 24 (op -> op LESSTHAN expr .)
+    GREATERTHAN     reduce using rule 24 (op -> op LESSTHAN expr .)
+    LESSEQUAL       reduce using rule 24 (op -> op LESSTHAN expr .)
+    GREATEQUAL      reduce using rule 24 (op -> op LESSTHAN expr .)
+    EQUALTO         reduce using rule 24 (op -> op LESSTHAN expr .)
+    NOTEQUAL        reduce using rule 24 (op -> op LESSTHAN expr .)
+    AND             reduce using rule 24 (op -> op LESSTHAN expr .)
+    OR              reduce using rule 24 (op -> op LESSTHAN expr .)
+    RBRACE          reduce using rule 24 (op -> op LESSTHAN expr .)
+    ID              reduce using rule 24 (op -> op LESSTHAN expr .)
+    READ            reduce using rule 24 (op -> op LESSTHAN expr .)
+    WRITE           reduce using rule 24 (op -> op LESSTHAN expr .)
+    IF              reduce using rule 24 (op -> op LESSTHAN expr .)
+    WHILE           reduce using rule 24 (op -> op LESSTHAN expr .)
+    INT             reduce using rule 24 (op -> op LESSTHAN expr .)
+    LBRACE          reduce using rule 24 (op -> op LESSTHAN expr .)
+    COMMENT         reduce using rule 24 (op -> op LESSTHAN expr .)
+    MLCOMMENT       reduce using rule 24 (op -> op LESSTHAN expr .)
+    UNARYNOT        reduce using rule 24 (op -> op LESSTHAN expr .)
+    NUM             reduce using rule 24 (op -> op LESSTHAN expr .)
+    LPAREN          reduce using rule 24 (op -> op LESSTHAN expr .)
+    SEMICOLON       reduce using rule 24 (op -> op LESSTHAN expr .)
+    RPAREN          reduce using rule 24 (op -> op LESSTHAN expr .)
+    ELSE            reduce using rule 24 (op -> op LESSTHAN expr .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+
+  ! MINUS           [ reduce using rule 24 (op -> op LESSTHAN expr .) ]
+
+
+state 64
+
+    (25) op -> op GREATERTHAN expr .
+    (29) expr -> expr . PLUS term
+    (30) expr -> expr . MINUS term
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    LESSTHAN        reduce using rule 25 (op -> op GREATERTHAN expr .)
+    GREATERTHAN     reduce using rule 25 (op -> op GREATERTHAN expr .)
+    LESSEQUAL       reduce using rule 25 (op -> op GREATERTHAN expr .)
+    GREATEQUAL      reduce using rule 25 (op -> op GREATERTHAN expr .)
+    EQUALTO         reduce using rule 25 (op -> op GREATERTHAN expr .)
+    NOTEQUAL        reduce using rule 25 (op -> op GREATERTHAN expr .)
+    AND             reduce using rule 25 (op -> op GREATERTHAN expr .)
+    OR              reduce using rule 25 (op -> op GREATERTHAN expr .)
+    RBRACE          reduce using rule 25 (op -> op GREATERTHAN expr .)
+    ID              reduce using rule 25 (op -> op GREATERTHAN expr .)
+    READ            reduce using rule 25 (op -> op GREATERTHAN expr .)
+    WRITE           reduce using rule 25 (op -> op GREATERTHAN expr .)
+    IF              reduce using rule 25 (op -> op GREATERTHAN expr .)
+    WHILE           reduce using rule 25 (op -> op GREATERTHAN expr .)
+    INT             reduce using rule 25 (op -> op GREATERTHAN expr .)
+    LBRACE          reduce using rule 25 (op -> op GREATERTHAN expr .)
+    COMMENT         reduce using rule 25 (op -> op GREATERTHAN expr .)
+    MLCOMMENT       reduce using rule 25 (op -> op GREATERTHAN expr .)
+    UNARYNOT        reduce using rule 25 (op -> op GREATERTHAN expr .)
+    NUM             reduce using rule 25 (op -> op GREATERTHAN expr .)
+    LPAREN          reduce using rule 25 (op -> op GREATERTHAN expr .)
+    SEMICOLON       reduce using rule 25 (op -> op GREATERTHAN expr .)
+    RPAREN          reduce using rule 25 (op -> op GREATERTHAN expr .)
+    ELSE            reduce using rule 25 (op -> op GREATERTHAN expr .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+
+  ! MINUS           [ reduce using rule 25 (op -> op GREATERTHAN expr .) ]
+
+
+state 65
+
+    (26) op -> op LESSEQUAL expr .
+    (29) expr -> expr . PLUS term
+    (30) expr -> expr . MINUS term
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    LESSTHAN        reduce using rule 26 (op -> op LESSEQUAL expr .)
+    GREATERTHAN     reduce using rule 26 (op -> op LESSEQUAL expr .)
+    LESSEQUAL       reduce using rule 26 (op -> op LESSEQUAL expr .)
+    GREATEQUAL      reduce using rule 26 (op -> op LESSEQUAL expr .)
+    EQUALTO         reduce using rule 26 (op -> op LESSEQUAL expr .)
+    NOTEQUAL        reduce using rule 26 (op -> op LESSEQUAL expr .)
+    AND             reduce using rule 26 (op -> op LESSEQUAL expr .)
+    OR              reduce using rule 26 (op -> op LESSEQUAL expr .)
+    RBRACE          reduce using rule 26 (op -> op LESSEQUAL expr .)
+    ID              reduce using rule 26 (op -> op LESSEQUAL expr .)
+    READ            reduce using rule 26 (op -> op LESSEQUAL expr .)
+    WRITE           reduce using rule 26 (op -> op LESSEQUAL expr .)
+    IF              reduce using rule 26 (op -> op LESSEQUAL expr .)
+    WHILE           reduce using rule 26 (op -> op LESSEQUAL expr .)
+    INT             reduce using rule 26 (op -> op LESSEQUAL expr .)
+    LBRACE          reduce using rule 26 (op -> op LESSEQUAL expr .)
+    COMMENT         reduce using rule 26 (op -> op LESSEQUAL expr .)
+    MLCOMMENT       reduce using rule 26 (op -> op LESSEQUAL expr .)
+    UNARYNOT        reduce using rule 26 (op -> op LESSEQUAL expr .)
+    NUM             reduce using rule 26 (op -> op LESSEQUAL expr .)
+    LPAREN          reduce using rule 26 (op -> op LESSEQUAL expr .)
+    SEMICOLON       reduce using rule 26 (op -> op LESSEQUAL expr .)
+    RPAREN          reduce using rule 26 (op -> op LESSEQUAL expr .)
+    ELSE            reduce using rule 26 (op -> op LESSEQUAL expr .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+
+  ! MINUS           [ reduce using rule 26 (op -> op LESSEQUAL expr .) ]
+
+
+state 66
+
+    (27) op -> op GREATEQUAL expr .
+    (29) expr -> expr . PLUS term
+    (30) expr -> expr . MINUS term
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    LESSTHAN        reduce using rule 27 (op -> op GREATEQUAL expr .)
+    GREATERTHAN     reduce using rule 27 (op -> op GREATEQUAL expr .)
+    LESSEQUAL       reduce using rule 27 (op -> op GREATEQUAL expr .)
+    GREATEQUAL      reduce using rule 27 (op -> op GREATEQUAL expr .)
+    EQUALTO         reduce using rule 27 (op -> op GREATEQUAL expr .)
+    NOTEQUAL        reduce using rule 27 (op -> op GREATEQUAL expr .)
+    AND             reduce using rule 27 (op -> op GREATEQUAL expr .)
+    OR              reduce using rule 27 (op -> op GREATEQUAL expr .)
+    RBRACE          reduce using rule 27 (op -> op GREATEQUAL expr .)
+    ID              reduce using rule 27 (op -> op GREATEQUAL expr .)
+    READ            reduce using rule 27 (op -> op GREATEQUAL expr .)
+    WRITE           reduce using rule 27 (op -> op GREATEQUAL expr .)
+    IF              reduce using rule 27 (op -> op GREATEQUAL expr .)
+    WHILE           reduce using rule 27 (op -> op GREATEQUAL expr .)
+    INT             reduce using rule 27 (op -> op GREATEQUAL expr .)
+    LBRACE          reduce using rule 27 (op -> op GREATEQUAL expr .)
+    COMMENT         reduce using rule 27 (op -> op GREATEQUAL expr .)
+    MLCOMMENT       reduce using rule 27 (op -> op GREATEQUAL expr .)
+    UNARYNOT        reduce using rule 27 (op -> op GREATEQUAL expr .)
+    NUM             reduce using rule 27 (op -> op GREATEQUAL expr .)
+    LPAREN          reduce using rule 27 (op -> op GREATEQUAL expr .)
+    SEMICOLON       reduce using rule 27 (op -> op GREATEQUAL expr .)
+    RPAREN          reduce using rule 27 (op -> op GREATEQUAL expr .)
+    ELSE            reduce using rule 27 (op -> op GREATEQUAL expr .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+
+  ! MINUS           [ reduce using rule 27 (op -> op GREATEQUAL expr .) ]
+
+
+state 67
+
+    (29) expr -> expr PLUS term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+    (34) term -> term . MODULUS factor
+
+    PLUS            reduce using rule 29 (expr -> expr PLUS term .)
+    MINUS           reduce using rule 29 (expr -> expr PLUS term .)
+    LESSTHAN        reduce using rule 29 (expr -> expr PLUS term .)
+    GREATERTHAN     reduce using rule 29 (expr -> expr PLUS term .)
+    LESSEQUAL       reduce using rule 29 (expr -> expr PLUS term .)
+    GREATEQUAL      reduce using rule 29 (expr -> expr PLUS term .)
+    EQUALTO         reduce using rule 29 (expr -> expr PLUS term .)
+    NOTEQUAL        reduce using rule 29 (expr -> expr PLUS term .)
+    AND             reduce using rule 29 (expr -> expr PLUS term .)
+    OR              reduce using rule 29 (expr -> expr PLUS term .)
+    RBRACE          reduce using rule 29 (expr -> expr PLUS term .)
+    ID              reduce using rule 29 (expr -> expr PLUS term .)
+    READ            reduce using rule 29 (expr -> expr PLUS term .)
+    WRITE           reduce using rule 29 (expr -> expr PLUS term .)
+    IF              reduce using rule 29 (expr -> expr PLUS term .)
+    WHILE           reduce using rule 29 (expr -> expr PLUS term .)
+    INT             reduce using rule 29 (expr -> expr PLUS term .)
+    LBRACE          reduce using rule 29 (expr -> expr PLUS term .)
+    COMMENT         reduce using rule 29 (expr -> expr PLUS term .)
+    MLCOMMENT       reduce using rule 29 (expr -> expr PLUS term .)
+    UNARYNOT        reduce using rule 29 (expr -> expr PLUS term .)
+    NUM             reduce using rule 29 (expr -> expr PLUS term .)
+    LPAREN          reduce using rule 29 (expr -> expr PLUS term .)
+    SEMICOLON       reduce using rule 29 (expr -> expr PLUS term .)
+    RPAREN          reduce using rule 29 (expr -> expr PLUS term .)
+    ELSE            reduce using rule 29 (expr -> expr PLUS term .)
+    TIMES           shift and go to state 47
+    DIVIDE          shift and go to state 48
+    MODULUS         shift and go to state 49
+
+
+state 68
+
+    (30) expr -> expr MINUS term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+    (34) term -> term . MODULUS factor
+
+    PLUS            reduce using rule 30 (expr -> expr MINUS term .)
+    MINUS           reduce using rule 30 (expr -> expr MINUS term .)
+    LESSTHAN        reduce using rule 30 (expr -> expr MINUS term .)
+    GREATERTHAN     reduce using rule 30 (expr -> expr MINUS term .)
+    LESSEQUAL       reduce using rule 30 (expr -> expr MINUS term .)
+    GREATEQUAL      reduce using rule 30 (expr -> expr MINUS term .)
+    EQUALTO         reduce using rule 30 (expr -> expr MINUS term .)
+    NOTEQUAL        reduce using rule 30 (expr -> expr MINUS term .)
+    AND             reduce using rule 30 (expr -> expr MINUS term .)
+    OR              reduce using rule 30 (expr -> expr MINUS term .)
+    RBRACE          reduce using rule 30 (expr -> expr MINUS term .)
+    ID              reduce using rule 30 (expr -> expr MINUS term .)
+    READ            reduce using rule 30 (expr -> expr MINUS term .)
+    WRITE           reduce using rule 30 (expr -> expr MINUS term .)
+    IF              reduce using rule 30 (expr -> expr MINUS term .)
+    WHILE           reduce using rule 30 (expr -> expr MINUS term .)
+    INT             reduce using rule 30 (expr -> expr MINUS term .)
+    LBRACE          reduce using rule 30 (expr -> expr MINUS term .)
+    COMMENT         reduce using rule 30 (expr -> expr MINUS term .)
+    MLCOMMENT       reduce using rule 30 (expr -> expr MINUS term .)
+    UNARYNOT        reduce using rule 30 (expr -> expr MINUS term .)
+    NUM             reduce using rule 30 (expr -> expr MINUS term .)
+    LPAREN          reduce using rule 30 (expr -> expr MINUS term .)
+    SEMICOLON       reduce using rule 30 (expr -> expr MINUS term .)
+    RPAREN          reduce using rule 30 (expr -> expr MINUS term .)
+    ELSE            reduce using rule 30 (expr -> expr MINUS term .)
+    TIMES           shift and go to state 47
+    DIVIDE          shift and go to state 48
+    MODULUS         shift and go to state 49
+
+
+state 69
+
+    (32) term -> term TIMES factor .
+
+    TIMES           reduce using rule 32 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 32 (term -> term TIMES factor .)
+    MODULUS         reduce using rule 32 (term -> term TIMES factor .)
+    PLUS            reduce using rule 32 (term -> term TIMES factor .)
+    MINUS           reduce using rule 32 (term -> term TIMES factor .)
+    LESSTHAN        reduce using rule 32 (term -> term TIMES factor .)
+    GREATERTHAN     reduce using rule 32 (term -> term TIMES factor .)
+    LESSEQUAL       reduce using rule 32 (term -> term TIMES factor .)
+    GREATEQUAL      reduce using rule 32 (term -> term TIMES factor .)
+    EQUALTO         reduce using rule 32 (term -> term TIMES factor .)
+    NOTEQUAL        reduce using rule 32 (term -> term TIMES factor .)
+    AND             reduce using rule 32 (term -> term TIMES factor .)
+    OR              reduce using rule 32 (term -> term TIMES factor .)
+    RBRACE          reduce using rule 32 (term -> term TIMES factor .)
+    ID              reduce using rule 32 (term -> term TIMES factor .)
+    READ            reduce using rule 32 (term -> term TIMES factor .)
+    WRITE           reduce using rule 32 (term -> term TIMES factor .)
+    IF              reduce using rule 32 (term -> term TIMES factor .)
+    WHILE           reduce using rule 32 (term -> term TIMES factor .)
+    INT             reduce using rule 32 (term -> term TIMES factor .)
+    LBRACE          reduce using rule 32 (term -> term TIMES factor .)
+    COMMENT         reduce using rule 32 (term -> term TIMES factor .)
+    MLCOMMENT       reduce using rule 32 (term -> term TIMES factor .)
+    UNARYNOT        reduce using rule 32 (term -> term TIMES factor .)
+    NUM             reduce using rule 32 (term -> term TIMES factor .)
+    LPAREN          reduce using rule 32 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 32 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 32 (term -> term TIMES factor .)
+    ELSE            reduce using rule 32 (term -> term TIMES factor .)
+
+
+state 70
+
+    (33) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 33 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 33 (term -> term DIVIDE factor .)
+    MODULUS         reduce using rule 33 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 33 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 33 (term -> term DIVIDE factor .)
+    LESSTHAN        reduce using rule 33 (term -> term DIVIDE factor .)
+    GREATERTHAN     reduce using rule 33 (term -> term DIVIDE factor .)
+    LESSEQUAL       reduce using rule 33 (term -> term DIVIDE factor .)
+    GREATEQUAL      reduce using rule 33 (term -> term DIVIDE factor .)
+    EQUALTO         reduce using rule 33 (term -> term DIVIDE factor .)
+    NOTEQUAL        reduce using rule 33 (term -> term DIVIDE factor .)
+    AND             reduce using rule 33 (term -> term DIVIDE factor .)
+    OR              reduce using rule 33 (term -> term DIVIDE factor .)
+    RBRACE          reduce using rule 33 (term -> term DIVIDE factor .)
+    ID              reduce using rule 33 (term -> term DIVIDE factor .)
+    READ            reduce using rule 33 (term -> term DIVIDE factor .)
+    WRITE           reduce using rule 33 (term -> term DIVIDE factor .)
+    IF              reduce using rule 33 (term -> term DIVIDE factor .)
+    WHILE           reduce using rule 33 (term -> term DIVIDE factor .)
+    INT             reduce using rule 33 (term -> term DIVIDE factor .)
+    LBRACE          reduce using rule 33 (term -> term DIVIDE factor .)
+    COMMENT         reduce using rule 33 (term -> term DIVIDE factor .)
+    MLCOMMENT       reduce using rule 33 (term -> term DIVIDE factor .)
+    UNARYNOT        reduce using rule 33 (term -> term DIVIDE factor .)
+    NUM             reduce using rule 33 (term -> term DIVIDE factor .)
+    LPAREN          reduce using rule 33 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 33 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 33 (term -> term DIVIDE factor .)
+    ELSE            reduce using rule 33 (term -> term DIVIDE factor .)
+
+
+state 71
+
+    (34) term -> term MODULUS factor .
+
+    TIMES           reduce using rule 34 (term -> term MODULUS factor .)
+    DIVIDE          reduce using rule 34 (term -> term MODULUS factor .)
+    MODULUS         reduce using rule 34 (term -> term MODULUS factor .)
+    PLUS            reduce using rule 34 (term -> term MODULUS factor .)
+    MINUS           reduce using rule 34 (term -> term MODULUS factor .)
+    LESSTHAN        reduce using rule 34 (term -> term MODULUS factor .)
+    GREATERTHAN     reduce using rule 34 (term -> term MODULUS factor .)
+    LESSEQUAL       reduce using rule 34 (term -> term MODULUS factor .)
+    GREATEQUAL      reduce using rule 34 (term -> term MODULUS factor .)
+    EQUALTO         reduce using rule 34 (term -> term MODULUS factor .)
+    NOTEQUAL        reduce using rule 34 (term -> term MODULUS factor .)
+    AND             reduce using rule 34 (term -> term MODULUS factor .)
+    OR              reduce using rule 34 (term -> term MODULUS factor .)
+    RBRACE          reduce using rule 34 (term -> term MODULUS factor .)
+    ID              reduce using rule 34 (term -> term MODULUS factor .)
+    READ            reduce using rule 34 (term -> term MODULUS factor .)
+    WRITE           reduce using rule 34 (term -> term MODULUS factor .)
+    IF              reduce using rule 34 (term -> term MODULUS factor .)
+    WHILE           reduce using rule 34 (term -> term MODULUS factor .)
+    INT             reduce using rule 34 (term -> term MODULUS factor .)
+    LBRACE          reduce using rule 34 (term -> term MODULUS factor .)
+    COMMENT         reduce using rule 34 (term -> term MODULUS factor .)
+    MLCOMMENT       reduce using rule 34 (term -> term MODULUS factor .)
+    UNARYNOT        reduce using rule 34 (term -> term MODULUS factor .)
+    NUM             reduce using rule 34 (term -> term MODULUS factor .)
+    LPAREN          reduce using rule 34 (term -> term MODULUS factor .)
+    SEMICOLON       reduce using rule 34 (term -> term MODULUS factor .)
+    RPAREN          reduce using rule 34 (term -> term MODULUS factor .)
+    ELSE            reduce using rule 34 (term -> term MODULUS factor .)
+
+
+state 72
+
+    (7) stmt -> ID ASSIGN lowop SEMICOLON .
+
+    RBRACE          reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    ID              reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    READ            reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    WRITE           reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    IF              reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    WHILE           reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    INT             reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    LBRACE          reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    COMMENT         reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    MLCOMMENT       reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    MINUS           reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    UNARYNOT        reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    NUM             reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    LPAREN          reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    ELSE            reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+    RPAREN          reduce using rule 7 (stmt -> ID ASSIGN lowop SEMICOLON .)
+
+
+state 73
+
+    (11) stmt -> IF lowop LPAREN stmt . optelse RPAREN
+    (15) optelse -> . ELSE LPAREN stmt RPAREN
+    (16) optelse -> .
+
+    ELSE            shift and go to state 76
+    RPAREN          reduce using rule 16 (optelse -> .)
+
+    optelse                        shift and go to state 75
+
+state 74
+
+    (12) stmt -> WHILE lowop LPAREN stmt . RPAREN
+
+    RPAREN          shift and go to state 77
+
+
+state 75
+
+    (11) stmt -> IF lowop LPAREN stmt optelse . RPAREN
+
+    RPAREN          shift and go to state 78
+
+
+state 76
+
+    (15) optelse -> ELSE . LPAREN stmt RPAREN
+
+    LPAREN          shift and go to state 79
+
+
+state 77
+
+    (12) stmt -> WHILE lowop LPAREN stmt RPAREN .
+
+    RBRACE          reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    ID              reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    READ            reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    WRITE           reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    IF              reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    WHILE           reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    INT             reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    LBRACE          reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    COMMENT         reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    MLCOMMENT       reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    MINUS           reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    UNARYNOT        reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    NUM             reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    LPAREN          reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    ELSE            reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+    RPAREN          reduce using rule 12 (stmt -> WHILE lowop LPAREN stmt RPAREN .)
+
+
+state 78
+
+    (11) stmt -> IF lowop LPAREN stmt optelse RPAREN .
+
+    RBRACE          reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    ID              reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    READ            reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    WRITE           reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    IF              reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    WHILE           reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    INT             reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    LBRACE          reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    COMMENT         reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    MLCOMMENT       reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    MINUS           reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    UNARYNOT        reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    NUM             reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    LPAREN          reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    ELSE            reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+    RPAREN          reduce using rule 11 (stmt -> IF lowop LPAREN stmt optelse RPAREN .)
+
+
+state 79
+
+    (15) optelse -> ELSE LPAREN . stmt RPAREN
+    (6) stmt -> . type ID SEMICOLON
+    (7) stmt -> . ID ASSIGN lowop SEMICOLON
+    (8) stmt -> . block
+    (9) stmt -> . READ ID SEMICOLON
+    (10) stmt -> . WRITE lowop SEMICOLON
+    (11) stmt -> . IF lowop LPAREN stmt optelse RPAREN
+    (12) stmt -> . WHILE lowop LPAREN stmt RPAREN
+    (13) stmt -> . lowop
+    (14) stmt -> . comment
+    (17) type -> . INT
+    (2) block -> . LBRACE action_new_scope stmt_list RBRACE
+    (18) lowop -> . lowop AND equal
+    (19) lowop -> . lowop OR equal
+    (20) lowop -> . equal
+    (21) lowop -> . equal EQUALTO op
+    (41) comment -> . COMMENT
+    (42) comment -> . MLCOMMENT
+    (22) equal -> . equal NOTEQUAL op
+    (23) equal -> . op
+    (24) op -> . op LESSTHAN expr
+    (25) op -> . op GREATERTHAN expr
+    (26) op -> . op LESSEQUAL expr
+    (27) op -> . op GREATEQUAL expr
+    (28) op -> . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . term MODULUS factor
+    (35) term -> . factor
+    (36) factor -> . MINUS factor
+    (37) factor -> . UNARYNOT factor
+    (38) factor -> . ID
+    (39) factor -> . NUM
+    (40) factor -> . LPAREN lowop RPAREN
+
+    ID              shift and go to state 9
+    READ            shift and go to state 12
+    WRITE           shift and go to state 13
+    IF              shift and go to state 14
+    WHILE           shift and go to state 16
+    INT             shift and go to state 18
+    LBRACE          shift and go to state 3
+    COMMENT         shift and go to state 21
+    MLCOMMENT       shift and go to state 22
+    MINUS           shift and go to state 25
+    UNARYNOT        shift and go to state 27
+    NUM             shift and go to state 28
+    LPAREN          shift and go to state 15
+
+    stmt                           shift and go to state 80
+    type                           shift and go to state 8
+    lowop                          shift and go to state 10
+    block                          shift and go to state 11
+    comment                        shift and go to state 17
+    equal                          shift and go to state 19
+    op                             shift and go to state 20
+    expr                           shift and go to state 23
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+
+state 80
+
+    (15) optelse -> ELSE LPAREN stmt . RPAREN
+
+    RPAREN          shift and go to state 81
+
+
+state 81
+
+    (15) optelse -> ELSE LPAREN stmt RPAREN .
+
+    RPAREN          reduce using rule 15 (optelse -> ELSE LPAREN stmt RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MINUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 63 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 64 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 65 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 66 resolved as shift

@@ -1,0 +1,14 @@
+{
+int x;
+
+while x != 5(
+ x = x + 2;
+)
+}
+
+Output:
+_t0 = x1 != 5
+IfFalse _t0 goto L0
+_t2 = x1 + 2
+x1 = _t2
+L0

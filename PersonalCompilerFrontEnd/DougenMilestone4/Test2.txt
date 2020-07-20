@@ -1,0 +1,20 @@
+{
+int x;
+int y;
+
+if x == 7(
+ y = 4 + 5;
+else(
+ x = 5 - 7;
+)
+)
+}
+
+Output:
+_t0 = x1 == 7
+ifFalse _t0 goto L0
+_t2 = 4 + 5
+y1 = _t2
+L0
+_t3 = 5 - 7
+x1 = _t3

@@ -1,0 +1,16 @@
+Input: 22910939393292827117363191711313123214
+Output: 
+LexToken(NUM,22910939393292827117363191711313123214,1,0)
+
+Input: 84636-232313\n3939&
+Output:
+LexToken(NUM,84636,1,0)
+Illegal character: - Found on line: 1
+LexToken(NUM,232313,1,6)
+LexToken(NUM,3939,2,13)
+Illegal character: & Found on line: 2
+
+Input: ~! This is a one line comment!\n~!~This is a multiline\ncomment!~!~
+Output:
+LexToken(COMMENT,'~! This is a one line comment!\n',2,0)
+LexToken(MLCOMMENT,'~!~This is a multiline\ncomment!~!~',2,31)

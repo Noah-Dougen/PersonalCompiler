@@ -1,0 +1,451 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMENT
+    MLCOMMENT
+    NEWLINE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> block
+Rule 2     block -> LBRACE action_new_scope stmt_list RBRACE
+Rule 3     action_new_scope -> <empty>
+Rule 4     stmt_list -> stmt_list stmt
+Rule 5     stmt_list -> <empty>
+Rule 6     stmt -> type ID SEMICOLON
+Rule 7     stmt -> ID ASSIGN expr SEMICOLON
+Rule 8     stmt -> block
+Rule 9     stmt -> READ ID SEMICOLON
+Rule 10    stmt -> WRITE expr SEMICOLON
+Rule 11    type -> INT
+Rule 12    expr -> expr PLUS term
+Rule 13    expr -> term
+Rule 14    term -> term TIMES factor
+Rule 15    term -> factor
+Rule 16    factor -> ID
+Rule 17    factor -> NUM
+Rule 18    factor -> LPAREN expr RPAREN
+
+Terminals, with rules where they appear
+
+ASSIGN               : 7
+COMMENT              : 
+ID                   : 6 7 9 16
+INT                  : 11
+LBRACE               : 2
+LPAREN               : 18
+MLCOMMENT            : 
+NEWLINE              : 
+NUM                  : 17
+PLUS                 : 12
+RBRACE               : 2
+READ                 : 9
+RPAREN               : 18
+SEMICOLON            : 6 7 9 10
+TIMES                : 14
+WRITE                : 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+action_new_scope     : 2
+block                : 1 8
+expr                 : 7 10 12 18
+factor               : 14 15
+program              : 0
+stmt                 : 4
+stmt_list            : 2 4
+term                 : 12 13 14
+type                 : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . block
+    (2) block -> . LBRACE action_new_scope stmt_list RBRACE
+
+    LBRACE          shift and go to state 3
+
+    program                        shift and go to state 1
+    block                          shift and go to state 2
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> block .
+
+    $end            reduce using rule 1 (program -> block .)
+
+
+state 3
+
+    (2) block -> LBRACE . action_new_scope stmt_list RBRACE
+    (3) action_new_scope -> .
+
+    RBRACE          reduce using rule 3 (action_new_scope -> .)
+    ID              reduce using rule 3 (action_new_scope -> .)
+    READ            reduce using rule 3 (action_new_scope -> .)
+    WRITE           reduce using rule 3 (action_new_scope -> .)
+    INT             reduce using rule 3 (action_new_scope -> .)
+    LBRACE          reduce using rule 3 (action_new_scope -> .)
+
+    action_new_scope               shift and go to state 4
+
+state 4
+
+    (2) block -> LBRACE action_new_scope . stmt_list RBRACE
+    (4) stmt_list -> . stmt_list stmt
+    (5) stmt_list -> .
+
+    RBRACE          reduce using rule 5 (stmt_list -> .)
+    ID              reduce using rule 5 (stmt_list -> .)
+    READ            reduce using rule 5 (stmt_list -> .)
+    WRITE           reduce using rule 5 (stmt_list -> .)
+    INT             reduce using rule 5 (stmt_list -> .)
+    LBRACE          reduce using rule 5 (stmt_list -> .)
+
+    stmt_list                      shift and go to state 5
+
+state 5
+
+    (2) block -> LBRACE action_new_scope stmt_list . RBRACE
+    (4) stmt_list -> stmt_list . stmt
+    (6) stmt -> . type ID SEMICOLON
+    (7) stmt -> . ID ASSIGN expr SEMICOLON
+    (8) stmt -> . block
+    (9) stmt -> . READ ID SEMICOLON
+    (10) stmt -> . WRITE expr SEMICOLON
+    (11) type -> . INT
+    (2) block -> . LBRACE action_new_scope stmt_list RBRACE
+
+    RBRACE          shift and go to state 6
+    ID              shift and go to state 9
+    READ            shift and go to state 11
+    WRITE           shift and go to state 12
+    INT             shift and go to state 13
+    LBRACE          shift and go to state 3
+
+    stmt                           shift and go to state 7
+    type                           shift and go to state 8
+    block                          shift and go to state 10
+
+state 6
+
+    (2) block -> LBRACE action_new_scope stmt_list RBRACE .
+
+    $end            reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    RBRACE          reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    ID              reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    READ            reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    WRITE           reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    INT             reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+    LBRACE          reduce using rule 2 (block -> LBRACE action_new_scope stmt_list RBRACE .)
+
+
+state 7
+
+    (4) stmt_list -> stmt_list stmt .
+
+    RBRACE          reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    ID              reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    READ            reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    WRITE           reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    INT             reduce using rule 4 (stmt_list -> stmt_list stmt .)
+    LBRACE          reduce using rule 4 (stmt_list -> stmt_list stmt .)
+
+
+state 8
+
+    (6) stmt -> type . ID SEMICOLON
+
+    ID              shift and go to state 14
+
+
+state 9
+
+    (7) stmt -> ID . ASSIGN expr SEMICOLON
+
+    ASSIGN          shift and go to state 15
+
+
+state 10
+
+    (8) stmt -> block .
+
+    RBRACE          reduce using rule 8 (stmt -> block .)
+    ID              reduce using rule 8 (stmt -> block .)
+    READ            reduce using rule 8 (stmt -> block .)
+    WRITE           reduce using rule 8 (stmt -> block .)
+    INT             reduce using rule 8 (stmt -> block .)
+    LBRACE          reduce using rule 8 (stmt -> block .)
+
+
+state 11
+
+    (9) stmt -> READ . ID SEMICOLON
+
+    ID              shift and go to state 16
+
+
+state 12
+
+    (10) stmt -> WRITE . expr SEMICOLON
+    (12) expr -> . expr PLUS term
+    (13) expr -> . term
+    (14) term -> . term TIMES factor
+    (15) term -> . factor
+    (16) factor -> . ID
+    (17) factor -> . NUM
+    (18) factor -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 20
+    NUM             shift and go to state 21
+    LPAREN          shift and go to state 22
+
+    expr                           shift and go to state 17
+    term                           shift and go to state 18
+    factor                         shift and go to state 19
+
+state 13
+
+    (11) type -> INT .
+
+    ID              reduce using rule 11 (type -> INT .)
+
+
+state 14
+
+    (6) stmt -> type ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 23
+
+
+state 15
+
+    (7) stmt -> ID ASSIGN . expr SEMICOLON
+    (12) expr -> . expr PLUS term
+    (13) expr -> . term
+    (14) term -> . term TIMES factor
+    (15) term -> . factor
+    (16) factor -> . ID
+    (17) factor -> . NUM
+    (18) factor -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 20
+    NUM             shift and go to state 21
+    LPAREN          shift and go to state 22
+
+    expr                           shift and go to state 24
+    term                           shift and go to state 18
+    factor                         shift and go to state 19
+
+state 16
+
+    (9) stmt -> READ ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 25
+
+
+state 17
+
+    (10) stmt -> WRITE expr . SEMICOLON
+    (12) expr -> expr . PLUS term
+
+    SEMICOLON       shift and go to state 26
+    PLUS            shift and go to state 27
+
+
+state 18
+
+    (13) expr -> term .
+    (14) term -> term . TIMES factor
+
+    SEMICOLON       reduce using rule 13 (expr -> term .)
+    PLUS            reduce using rule 13 (expr -> term .)
+    RPAREN          reduce using rule 13 (expr -> term .)
+    TIMES           shift and go to state 28
+
+
+state 19
+
+    (15) term -> factor .
+
+    TIMES           reduce using rule 15 (term -> factor .)
+    SEMICOLON       reduce using rule 15 (term -> factor .)
+    PLUS            reduce using rule 15 (term -> factor .)
+    RPAREN          reduce using rule 15 (term -> factor .)
+
+
+state 20
+
+    (16) factor -> ID .
+
+    TIMES           reduce using rule 16 (factor -> ID .)
+    SEMICOLON       reduce using rule 16 (factor -> ID .)
+    PLUS            reduce using rule 16 (factor -> ID .)
+    RPAREN          reduce using rule 16 (factor -> ID .)
+
+
+state 21
+
+    (17) factor -> NUM .
+
+    TIMES           reduce using rule 17 (factor -> NUM .)
+    SEMICOLON       reduce using rule 17 (factor -> NUM .)
+    PLUS            reduce using rule 17 (factor -> NUM .)
+    RPAREN          reduce using rule 17 (factor -> NUM .)
+
+
+state 22
+
+    (18) factor -> LPAREN . expr RPAREN
+    (12) expr -> . expr PLUS term
+    (13) expr -> . term
+    (14) term -> . term TIMES factor
+    (15) term -> . factor
+    (16) factor -> . ID
+    (17) factor -> . NUM
+    (18) factor -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 20
+    NUM             shift and go to state 21
+    LPAREN          shift and go to state 22
+
+    expr                           shift and go to state 29
+    term                           shift and go to state 18
+    factor                         shift and go to state 19
+
+state 23
+
+    (6) stmt -> type ID SEMICOLON .
+
+    RBRACE          reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    ID              reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    READ            reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    WRITE           reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    INT             reduce using rule 6 (stmt -> type ID SEMICOLON .)
+    LBRACE          reduce using rule 6 (stmt -> type ID SEMICOLON .)
+
+
+state 24
+
+    (7) stmt -> ID ASSIGN expr . SEMICOLON
+    (12) expr -> expr . PLUS term
+
+    SEMICOLON       shift and go to state 30
+    PLUS            shift and go to state 27
+
+
+state 25
+
+    (9) stmt -> READ ID SEMICOLON .
+
+    RBRACE          reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    ID              reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    READ            reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    WRITE           reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    INT             reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+    LBRACE          reduce using rule 9 (stmt -> READ ID SEMICOLON .)
+
+
+state 26
+
+    (10) stmt -> WRITE expr SEMICOLON .
+
+    RBRACE          reduce using rule 10 (stmt -> WRITE expr SEMICOLON .)
+    ID              reduce using rule 10 (stmt -> WRITE expr SEMICOLON .)
+    READ            reduce using rule 10 (stmt -> WRITE expr SEMICOLON .)
+    WRITE           reduce using rule 10 (stmt -> WRITE expr SEMICOLON .)
+    INT             reduce using rule 10 (stmt -> WRITE expr SEMICOLON .)
+    LBRACE          reduce using rule 10 (stmt -> WRITE expr SEMICOLON .)
+
+
+state 27
+
+    (12) expr -> expr PLUS . term
+    (14) term -> . term TIMES factor
+    (15) term -> . factor
+    (16) factor -> . ID
+    (17) factor -> . NUM
+    (18) factor -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 20
+    NUM             shift and go to state 21
+    LPAREN          shift and go to state 22
+
+    term                           shift and go to state 31
+    factor                         shift and go to state 19
+
+state 28
+
+    (14) term -> term TIMES . factor
+    (16) factor -> . ID
+    (17) factor -> . NUM
+    (18) factor -> . LPAREN expr RPAREN
+
+    ID              shift and go to state 20
+    NUM             shift and go to state 21
+    LPAREN          shift and go to state 22
+
+    factor                         shift and go to state 32
+
+state 29
+
+    (18) factor -> LPAREN expr . RPAREN
+    (12) expr -> expr . PLUS term
+
+    RPAREN          shift and go to state 33
+    PLUS            shift and go to state 27
+
+
+state 30
+
+    (7) stmt -> ID ASSIGN expr SEMICOLON .
+
+    RBRACE          reduce using rule 7 (stmt -> ID ASSIGN expr SEMICOLON .)
+    ID              reduce using rule 7 (stmt -> ID ASSIGN expr SEMICOLON .)
+    READ            reduce using rule 7 (stmt -> ID ASSIGN expr SEMICOLON .)
+    WRITE           reduce using rule 7 (stmt -> ID ASSIGN expr SEMICOLON .)
+    INT             reduce using rule 7 (stmt -> ID ASSIGN expr SEMICOLON .)
+    LBRACE          reduce using rule 7 (stmt -> ID ASSIGN expr SEMICOLON .)
+
+
+state 31
+
+    (12) expr -> expr PLUS term .
+    (14) term -> term . TIMES factor
+
+    SEMICOLON       reduce using rule 12 (expr -> expr PLUS term .)
+    PLUS            reduce using rule 12 (expr -> expr PLUS term .)
+    RPAREN          reduce using rule 12 (expr -> expr PLUS term .)
+    TIMES           shift and go to state 28
+
+
+state 32
+
+    (14) term -> term TIMES factor .
+
+    TIMES           reduce using rule 14 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 14 (term -> term TIMES factor .)
+    PLUS            reduce using rule 14 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 14 (term -> term TIMES factor .)
+
+
+state 33
+
+    (18) factor -> LPAREN expr RPAREN .
+
+    TIMES           reduce using rule 18 (factor -> LPAREN expr RPAREN .)
+    SEMICOLON       reduce using rule 18 (factor -> LPAREN expr RPAREN .)
+    PLUS            reduce using rule 18 (factor -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 18 (factor -> LPAREN expr RPAREN .)
+

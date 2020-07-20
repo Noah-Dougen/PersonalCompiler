@@ -1,0 +1,47 @@
+{
+int x;
+int y;
+int z;
+int w;
+int t;
+
+~! else belongs to the first if ~!
+
+if x == y(
+ if w == w(
+  z = w;
+ )
+else(
+  t = w;
+ )
+)
+
+~! else belongs to the second if ~!
+
+if t == x(
+ if z == x(
+  z = y;
+ else(
+  y = w;
+ )
+ )
+)
+}
+
+Output:
+_t0 = x1 == y1
+ifFalse _t0 goto L0
+_t2 = w1 == w1
+ifFalse _t2 goto L1
+z1 = w1
+L1
+L0
+t1 = w1		#end of the first nested if statement
+_t4 = t1 == x1
+ifFalse _t4 goto L2
+_t6 = z1 == x1
+ifFalse _t6 goto L3
+z1 = y1
+L3
+y1 = w1
+L2

@@ -1,0 +1,37 @@
+Test 1:
+{
+	int x; 
+	x = 3;
+	x = x + 2;
+}
+Output:
+
+Test 2:
+{ 
+	x = 5; 
+	int x;
+}
+Output:
+Error: x1 is not in the symbol table   
+
+Test 3:
+{
+	int x;
+	x = 9 + y;
+}
+Output:
+Error: y1 is not in the symbol table    
+ 
+Test 4:
+{ 
+	int x;
+	int z;
+	x = 7;
+	
+	{
+		int x;
+		x = 5;
+	}
+	z = 2;
+}
+Output:
