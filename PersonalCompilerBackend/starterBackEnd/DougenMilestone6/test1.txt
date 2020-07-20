@@ -1,0 +1,22 @@
+_t0 = arr[12,45,32,67,21] 
+length = 5
+_t1 = arr[2]
+
+
+Output:
+
+arr 	DCD	 21, 67, 32, 45, 12
+arrlength 	DCD	 5
+index	 DCD	 2
+	 LDR	r2,= arr
+	 LDR	r3,=length
+	 LDR	r6,=index
+	 LDR	r7,r6
+	 LDR	r1,=#4
+	 LDR	r0,r2
+	 LDR	r4,r3
+	 SUB	r0,r4,r7
+	BL signed_multiply
+	 LDR	r8,[r2,r0]
+	 STR	r8,[r9]
+	END

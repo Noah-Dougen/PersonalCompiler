@@ -1,0 +1,169 @@
+_t0 = x > 2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x > 2
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =2
+	CMP r1, r3
+	BGT greater
+	LDR r5, =0
+	STR r5, [r4]
+greater
+	LDR r5, =1
+	STR r5, [r4]
+	END
+
+
+_t0 = x < 2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x < 2
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =2
+	CMP r1, r3
+	BLT less
+	LDR r5, =0
+	STR r5, [r4]
+less
+	LDR r5, =1
+	STR r5, [r4]
+	END
+
+
+_t0 = x >= 2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x >= 2
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =2
+	CMP r1, r3
+	BGE greatequal
+	LDR r5, =0
+	STR r5, [r4]
+greatequal
+	LDR r5, =1
+	STR r5, [r4]
+	END
+
+
+_t0 = x <= 2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x <= 2
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =2
+	CMP r1, r3
+	BLE lessequal
+	LDR r5, =0
+	STR r5, [r4]
+lessequal
+	LDR r5, =1
+	STR r5, [r4]
+	END
+
+
+_t0 = x == 2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x == 2
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =2
+	CMP r1, r3
+	BNE false
+	LDR r5, =1
+	STR r5, [r4]
+false
+	LDR r5, =0
+	STR r5, [r4]
+	END
+
+
+_t0 = x != 2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x != 2
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =2
+	CMP r1, r3
+	BE false
+	LDR r5, =1
+	STR r5, [r4]
+false
+	LDR r5, =0
+	STR r5, [r4]
+	END
+
+
+_t0 = x && 2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x != 2
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =2
+	CMP r1, r3
+	BE false
+	LDR r5, =1
+	STR r5, [r4]
+false
+	LDR r5, =0
+	STR r5, [r4]
+	END
+
+
+_t0 = x || 2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x || 2
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =2
+	LDR r6, =0
+	CMP r1, r6
+	BNE true
+	CMP r3, r6
+	BNE true
+	LDR r5, =0
+	STR r5, [r4]
+true
+	LDR r5, =1
+	STR r5, [r4]
+	END

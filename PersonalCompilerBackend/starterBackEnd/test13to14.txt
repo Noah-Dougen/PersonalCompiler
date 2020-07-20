@@ -1,0 +1,35 @@
+_t0 = -2
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = - 2
+	LDR r1, =2
+	LDR r3, =0
+	SUB r4, r3, r1
+	LDR r2, =var__t0
+	STR r4, [r2]
+	END
+
+
+_t0 = !x
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = ! var_x
+	LDR r0, =var_x
+	LDR r1, [r0]
+	CMP r3, r1
+	BE maketrue
+	LDR r1, =var__t0
+	STR r1, [r2]
+maketrue
+	LDR r5, =1
+	LDR r1, =var__t0
+	STR r5, [r2]
+	END

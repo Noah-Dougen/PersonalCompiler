@@ -1,0 +1,45 @@
+_t0 = x > 7
+IfFalse _t0 goto L1
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+
+	; var__t0 = var_x > 7
+	LDR r2, =var_x
+	LDR r0, [r2]
+	LDR r1, =7
+	CMP r1, r3
+	BGT greater
+	LDR r5, =0
+	STR r5, [r4]
+greater
+	LDR r5, =1
+	STR r5, [r4]
+
+	; IfFalse _t0 goto L1
+	LDR r8, =0
+	CMP r4, r6
+	BEQ L1
+L1
+	END
+
+
+Else goto L1
+_t0 = y + 4
+
+Output:
+	; initializing the first addresses for the input and output buffers
+	LDR r12, =_input
+	LDR r11, =_output
+L1
+
+	; var__t0 = var_y + 4
+	LDR r0, =var_y
+	LDR r1, [r0]
+	LDR r3, =4
+	LDR r4, =var__t0
+	ADD r5, r1, r3
+	STR r5, [r4]
+	END
